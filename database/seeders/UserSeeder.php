@@ -20,7 +20,8 @@ class UserSeeder extends Seeder
             'email' => 'superuser@root.com',
             'password' => Hash::make('superuser'),
             'role_id' => RoleEnum::SUPER_USER,
-            'email_verified_at' => Carbon::now()
+            'email_verified_at' => Carbon::now(),
+            'phone' => '+90PHONE_NUMBER'
         ]);
     }
 }

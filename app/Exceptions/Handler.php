@@ -24,24 +24,15 @@ class Handler extends ExceptionHandler
      */
     public function register(): void
     {
-
         $this->reportable(function (Throwable $e) {
-            $data = [
-                'file' => $e->getFile(),
+            $exception = [
+                'file' =>$e->getFile(),
                 'code' => $e->getCode(),
-                'line' => $e->getLine(),
                 'message' => $e->getMessage(),
-                'log_trace' => $e->getTraceAsString(),
+                'line' => $e->getLine(),
+                'trace' => $e->getTraceAsString()
             ];
-
-            $dataArr = [
-                'file' => $data['file'],
-                'code' => $data['code'],
-                'message' => $data['message'],
-                'line' => $data['line'],
-                'trace' => $data['log_trace']
-            ];
-            ErrorLog::query()->create($dataArr);
+            ErrorLog::query()->create($exception);
         });
     }
 }

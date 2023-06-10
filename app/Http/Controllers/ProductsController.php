@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Scopes\ActiveProductsScope;
 use App\Trait\GetResourceRoutesTrait;
 use Illuminate\Auth\Access\AuthorizationException;
 use Illuminate\Contracts\View\View;
@@ -57,6 +58,21 @@ class ProductsController extends Controller
     {
         $this->authorize(__FUNCTION__, $this->model);
         $products = Product::all();
+        return view($this->prefix . __FUNCTION__, [
+            'routes' => $this->routes,
+            'products' => $products
+        ]);
+    }
+
+
+    /**
+     * @return View
+     * @throws AuthorizationException
+     */
+    public function archive(): View
+    {
+        $this->authorize(__FUNCTION__, $this->model);
+        $products = Product::withOutGlobalScope(new ActiveProductsScope())->withTrashed()->get();
         return view($this->prefix . __FUNCTION__, [
             'routes' => $this->routes,
             'products' => $products

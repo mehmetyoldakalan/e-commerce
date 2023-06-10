@@ -6,7 +6,7 @@
                 <h4 class="mb-0">Hesabınızı Doğrulayın</h4>
             </div>
         </div>
-        <p class="px-2">Devam etmek için mail adresinizi onaylamanız gerekmektedir.</p>
+        <p class="px-2">Güvenliğiniz için mail adresinizi onaylamanız gerekmektedir. Bu işlem sadece 1 kere yapılacaktır.</p>
 
         <div class="card-content">
 

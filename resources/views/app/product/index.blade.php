@@ -1,5 +1,5 @@
 @extends('layouts.application')
-@section('content-title', 'Anasayfa')
+@section('content-title', 'Ürün Listesi')
 @section('content')
     <style>
         .product-img {
@@ -15,21 +15,7 @@
         }
     </style>
     <section id="data-thumb-view" class="data-thumb-view-header">
-        <div class="action-btns d-none">
-            <div class="btn-dropdown mr-1 mb-1">
-                <div class="btn-group dropdown actions-dropodown">
-                    <button type="button" class="btn btn-white px-1 py-1 dropdown-toggle waves-effect waves-light" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Actions
-                    </button>
-                    <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" onclick="selectEntityIds()" href="#"><i class="feather icon-trash"></i>Delete</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-archive"></i>Archive</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-file"></i>Print</a>
-                        <a class="dropdown-item" href="#"><i class="feather icon-save"></i>Another Action</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('app.product.components.action-buttons')
         <!-- dataTable starts -->
         <div class="table-responsive">
             <table class="table data-thumb-view">

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Scopes\ActiveProductsScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -51,10 +52,13 @@ class Product extends Model
             $query->created_by = Auth::user()->id;
             $query->created_by_ip = Request::ip();
         });
+
         static::updating(static function ($query) {
             $query->updated_by = Auth::user()->id;
             $query->updated_by_ip = Request::ip();
         });
+
+        static::addGlobalScope(new ActiveProductsScope());
     }
 
     /**
@@ -64,6 +68,15 @@ class Product extends Model
     public static function getFirstImage($productId = null): Model|Builder|null
     {
         return ProductImage::query()->where('product_id', $productId)->orderBy('arrangement')->first();
+    }
+
+    /**
+     * @param $productId
+     * @return Model|Builder|null
+     */
+    public static function getFirstTrashedImage($productId = null): Model|Builder|null
+    {
+        return ProductImage::query()->withTrashed()->where('product_id', $productId)->orderBy('arrangement')->first();
     }
 
     /**

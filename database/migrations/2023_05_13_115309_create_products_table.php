@@ -20,6 +20,8 @@ return new class extends Migration
             $table->double('list_price')->default(0.0);
             $table->double('discounted_price')->nullable();
             $table->integer('stock_quantity')->default(0);
+            $table->string('barcode')->nullable();
+            $table->string('product_number')->nullable();
             $table->enum('is_active',[0,1])->default(1)->comment('1->active 0->passive');
             $table->integer('created_by');
             $table->string('created_by_ip');

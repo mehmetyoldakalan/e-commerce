@@ -94,4 +94,12 @@ class ProductPolicy
     {
         return true;
     }
+
+    /**
+     * @return bool
+     */
+    public function archive(): bool
+    {
+        return $this->IS_PRODUCT_MANAGER or $this->IS_VENDOR or $this->IS_SUPER_USER;
+    }
 }

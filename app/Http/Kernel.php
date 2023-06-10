@@ -7,6 +7,7 @@ use App\Http\Middleware\EncryptCookies;
 use App\Http\Middleware\IsProductManager;
 use App\Http\Middleware\IsSuperUser;
 use App\Http\Middleware\IsVendor;
+use App\Http\Middleware\OtpCheck;
 use App\Http\Middleware\PreventRequestsDuringMaintenance;
 use App\Http\Middleware\RedirectIfAuthenticated;
 use App\Http\Middleware\TrimStrings;
@@ -91,5 +92,6 @@ class Kernel extends HttpKernel
         'IsSuperUser' => IsSuperUser::class,
         'IsVendor' => IsVendor::class,
         'IsProductManager' => IsProductManager::class,
+        'OtpCheck' => OtpCheck::class,
     ];
 }
